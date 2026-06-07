@@ -1,3 +1,9 @@
+/*
+Compile: gcc -o prime prime.c
+
+Run: ./prime
+*/
+
 #include <stdio.h>
 
 int main(){
