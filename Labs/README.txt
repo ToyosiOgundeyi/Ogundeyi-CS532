@@ -1,11 +1,12 @@
-Lab 4
+Lab 5
 
-Compile: gcc -Wall -o lab4 lab4.c
+Compile:
+gcc -Wall -o lab5 lab5.c
 
-Run: ./lab4 file1 file2
+Run:
+./lab5 .
 
 Description:
-- This program takes two filenames as command-line arguments.
-- The contents of the second file are appended to the end of the first file.
-- The second file is not modified.
-- If both filenames are the same, the program prints an error message and terminates.
+- This program takes a directory name as a command-line argument.
+- It recursively traverses the directory and all subdirectories.
+- It prints the names and file types of files and directories.
