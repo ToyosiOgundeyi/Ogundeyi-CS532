@@ -1,4 +1,8 @@
 /*
+Name: Toyosi Ogundeyi
+BlazerId: Ogundeyi
+Project: Lab 7
+
 To compile:
     gcc -Wall -Wextra -pedantic -std=c11 -o lab7 lab7.c
 
@@ -330,3 +334,4 @@ int main(int argc, char *argv[])
     printf("Execution information was written to output.log.\n");
 
     return EXIT_SUCCESS;
+}
