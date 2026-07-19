@@ -1,63 +1,48 @@
-CS 532 Lab 6
-Standard I/O Streams and CSV Sorting
+CS 532 Lab 7
+Process Creation Using fork() and exec()
 
 Name: Toyosi Ogundeyi
 BlazerId: Ogundeyi
 
 Files Submitted:
-listing.c
+lab7.c
 README.txt
 
-Required Input File:
-listings.csv
-
 Compilation:
-gcc -o listing listing.c
+gcc -Wall -Wextra -pedantic -std=c11 -o lab7 lab7.c
 
 Execution:
-./listing
-
-The files listing.c and listings.csv must be in the same directory before
-the program is executed.
+./lab7 commands.txt
 
 Program Description:
-The program opens listings.csv in read mode and reads each record with
-fgets(). It uses strtok(), atoi(), atof(), and strdup() to parse the
-13 comma-separated fields and store each record in a struct listing.
+This program reads commands from an input file one line at a time.
+For each command, it creates a child process using fork().
+The child process executes the command using execvp().
+The parent process records the start time before creating the child process,
+waits for the child process to finish using waitpid(), records the end time,
+and writes the command, start time, and end time to output.log.
 
-The program displays the listing structures on standard output. It then
-uses the C library qsort() function to sort the complete structures in
-two different ways:
+Input:
+The input file contains one command per line with optional command-line
+arguments.
 
-1. Alphabetically by host_name
-2. Numerically by price, from lowest to highest
-
-Output Files:
-listings_sorted_by_host_name.csv
-listings_sorted_by_price.csv
-
-Both output files retain the original CSV heading row and contain all
-13 fields from each listing.
+Output:
+The program creates output.log containing:
+- command executed
+- start time
+- end time
 
 Testing:
-The program was tested by compiling with:
-gcc -Wall -Wextra -pedantic -std=c11 -o listing listing.c
-
-The following items were tested:
-- Opening and reading listings.csv
-- Parsing all 13 CSV fields
-- Storing records in an array of structures
-- Displaying the structures
-- Sorting complete structures by host_name
-- Sorting complete structures by price
-- Writing both sorted CSV output files
-- Closing all input and output streams
-- Releasing dynamically allocated strings
-- Handling an unavailable or empty input file
+The program was tested using commands such as:
+uname -a
+echo Hello World
+sleep 2
+date
+pwd
+whoami
+ls -l
 
 Notes:
-The program reads the header row separately and processes all remaining
-rows as listing data. The array size is sufficient to store all records
-contained in the provided listings.csv file. When two listings have the
-same host name or price, the listing ID is used to produce a consistent
-ordering.
+- execvp() is used to execute commands with variable numbers of arguments.
+- waitpid() ensures the parent waits for each child process before processing the next command.
+- The program uses the standard I/O library functions for file operations.
